@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #002253;
+  --color-accent: #2C88F7;
+  --color-surface: #F8F9FA;
+  --color-aurora-purple: #F8F6FF;
+  --color-aurora-blue: #EBF3FE;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  color: var(--color-navy);
+  background-color: var(--color-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/40 backdrop-blur-md border border-white/40 shadow-[0_4px_10px_rgba(0,0,0,0.05)];
+  }
+  
+  .aurora-bg {
+    background: radial-gradient(circle at 10% 20%, var(--color-aurora-purple) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, var(--color-aurora-blue) 0%, transparent 40%),
+                var(--color-surface);
+  }
+}
