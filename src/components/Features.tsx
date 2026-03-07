@@ -12,7 +12,7 @@ interface FeaturesProps {
     reverse?: boolean;
 }
 
-export default function Features({ title, subtitle, heroImage, badgeTitle, badgeSubtitle, buttonText, list, reverse }: FeaturesProps) {
+export default function Features({ title, subtitle, heroImage, buttonText, list, reverse }: FeaturesProps) {
     const defaultFeatures = [
         {
             title: "專利微脈動反旋科技 (Feature)",
