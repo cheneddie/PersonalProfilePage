@@ -11,6 +11,7 @@ import Testimonials from '../components/Testimonials';
 import CTA from '../components/CTA';
 import FAQ from '../components/FAQ';
 import SocialLinks from '../components/SocialLinks';
+import VideoSection from '../components/VideoSection';
 import { Loader2 } from 'lucide-react';
 
 export default function ProfilePage() {
@@ -66,12 +67,22 @@ export default function ProfilePage() {
                     desc={profile.aboutDesc}
                     features={profile.aboutFeatures}
                 />
-                <Features
-                    title={profile.featuresTitle}
-                    subtitle={profile.featuresSubtitle}
-                    heroImage={profile.featuresHeroImage}
-                    list={profile.featuresList}
-                />
+                {profile.youtubeVideoUrl && (
+                    <VideoSection youtubeUrl={profile.youtubeVideoUrl} />
+                )}
+                {profile.featuresBlocks && profile.featuresBlocks.map((block, i) => (
+                    <Features
+                        key={i}
+                        title={block.title}
+                        subtitle={block.subtitle}
+                        heroImage={block.heroImage}
+                        badgeTitle={block.badgeTitle}
+                        badgeSubtitle={block.badgeSubtitle}
+                        buttonText={block.buttonText}
+                        list={block.list}
+                        reverse={i % 2 !== 0}
+                    />
+                ))}
                 <Testimonials
                     title={profile.testimonialsTitle}
                     desc={profile.testimonialsDesc}

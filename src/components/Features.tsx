@@ -5,10 +5,14 @@ interface FeaturesProps {
     title?: string;
     subtitle?: string;
     heroImage?: string;
+    badgeTitle?: string;
+    badgeSubtitle?: string;
+    buttonText?: string;
     list?: { title: string; desc: string }[];
+    reverse?: boolean;
 }
 
-export default function Features({ title, subtitle, heroImage, list }: FeaturesProps) {
+export default function Features({ title, subtitle, heroImage, badgeTitle, badgeSubtitle, buttonText, list, reverse }: FeaturesProps) {
     const defaultFeatures = [
         {
             title: "專利微脈動反旋科技 (Feature)",
@@ -31,9 +35,9 @@ export default function Features({ title, subtitle, heroImage, list }: FeaturesP
     const displayFeatures = list && list.length > 0 ? list : defaultFeatures;
 
     return (
-        <section id="features" className="py-20 md:py-32 bg-white/40 scroll-mt-20">
+        <section className="py-20 md:py-32 bg-white/40 odd:bg-slate-50/50 even:bg-white/40 border-t border-slate-100 scroll-mt-20">
             <div className="max-w-6xl mx-auto px-6">
-                <div className="flex flex-col md:flex-row items-center gap-16">
+                <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16`}>
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -46,10 +50,10 @@ export default function Features({ title, subtitle, heroImage, list }: FeaturesP
                                 alt="Product Feature"
                                 className="w-full h-full object-cover rounded-[1.5rem]"
                             />
-                            <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl">
-                                <p className="font-bold text-slate-800 text-xl hidden md:block">ageLOC LumiSpa iO</p>
-                                <p className="text-slate-600 text-sm mt-1">智慧雙效潔膚護理系統</p>
-                            </div>
+                            {/* <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl">
+                                <p className="font-bold text-slate-800 text-xl hidden md:block">{badgeTitle || "技術"}</p>
+                                <p className="text-slate-600 text-sm mt-1">{badgeSubtitle || "安全"}</p>
+                            </div> */}
                         </div>
                     </motion.div>
 
@@ -68,10 +72,10 @@ export default function Features({ title, subtitle, heroImage, list }: FeaturesP
                             </p>
                         </div>
 
-                        <div className="space-y-6">
+                        <div className={`grid gap-6 ${displayFeatures.length > 3 ? 'md:grid-cols-2' : 'grid-cols-1'}`}>
                             {displayFeatures.map((feature, i) => (
                                 <div key={i} className="flex gap-4 items-start">
-                                    <div className="mt-1 bg-blue-100 text-blue-600 rounded-full p-1">
+                                    <div className="mt-1 bg-blue-100 text-blue-600 rounded-full p-1 shrink-0">
                                         <CheckCircle2 className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -85,7 +89,7 @@ export default function Features({ title, subtitle, heroImage, list }: FeaturesP
                         <button onClick={() => {
                             document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
                         }} className="mt-8 px-8 py-4 rounded-full bg-slate-900 text-white font-bold hover:bg-slate-800 transition shadow-xl">
-                            探索如何改變你的肌膚
+                            {buttonText || "探索"}
                         </button>
                     </motion.div>
                 </div>

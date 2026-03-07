@@ -6,7 +6,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/:id" element={<ProfilePage />} />
-        <Route path="/" element={<Navigate to="/chenwei19880101" replace />} />
+        <Route path="/" element={<Navigate to="/jessicalien1987" replace />} />
       </Routes>
     </HashRouter>
   );
